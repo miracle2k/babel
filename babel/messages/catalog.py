@@ -626,10 +626,13 @@ class Catalog(object):
         :param lineno: the line number on which the msgid line was found in the
                        PO file, if any
         :param context: the message context
+        :return: the new message object
         """
-        self[id] = Message(id, string, list(locations), flags, auto_comments,
-                           user_comments, previous_id, lineno=lineno,
-                           context=context)
+        m = Message(id, string, list(locations), flags, auto_comments,
+                    user_comments, previous_id, lineno=lineno,
+                    context=context)
+        self[id] = m
+        return m
 
     def check(self):
         """Run various validation checks on the translations in the catalog.
